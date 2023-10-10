@@ -34,6 +34,19 @@
         const versionSpan = document.getElementById('version-software');
         const descripcionSpan = document.getElementById('descripcion-software');
 
+        function preguntarNombreApellido() {
+            let nombre = prompt('Por favor, ingrese su nombre:');
+            let apellido = prompt('Por favor, ingrese su apellido:');
+
+            while (!nombre || !apellido) {
+                alert('Por favor, complete tanto el nombre como el apellido.');
+                nombre = prompt('Por favor, ingrese su nombre:');
+                apellido = prompt('Por favor, ingrese su apellido:');
+            }
+
+            alert('Bienvenido, ' + nombre + ' ' + apellido + '!');
+        }
+
         function agregarSoftware(nombre, version, descripcion) {
             const software = { nombre, version, descripcion };
             softwareList.push(software);
@@ -55,8 +68,11 @@
     nombreSpan.textContent = software.nombre;
     versionSpan.textContent = software.version;
     descripcionSpan.textContent = software.descripcion;
-    detalleSoftware.style.display = 'block';
-
+    if (detalleSoftware.style.display === 'none') {
+        detalleSoftware.style.display = 'block';
+    } else {
+        detalleSoftware.style.display = 'none';
+    }
     eliminarButton.style.display = 'block';
 
     eliminarButton.onclick = function() {
@@ -77,21 +93,23 @@ function eliminarSoftware(index) {
 
 
 
-
-        const botonAgregar = document.getElementById('agregar-software');
-        botonAgregar.addEventListener('click', () => {
-            let nombre, version, descripcion;
-            do {
-                nombre = prompt('Nombre del software:');
-            } while (!nombre);
-            do {
-                version = prompt('Versión:');
-            } while (!version);
-            do {
-                descripcion = prompt('Descripción:');
-            } while (!descripcion);
-            agregarSoftware(nombre, version, descripcion);
-        });
+const botonAgregar = document.getElementById('agregar-software');
+botonAgregar.addEventListener('click', () => {
+    let nombre, version, descripcion;
+    nombre = prompt('Nombre del software:');
+    if (nombre === null || nombre === '') {
+        return;
+    }
+    version = prompt('Versión:');
+    if (version === null) {
+        return; 
+    }
+    descripcion = prompt('Descripción:');
+    if (descripcion === null) {
+        return; 
+    }    
+    agregarSoftware(nombre, version, descripcion);
+});
 
         agregarSoftware('Software 1', '1.0', 'Esta es la descripción del Software 1');
         agregarSoftware('Software 2', '2.0', 'Esta es la descripción del Software 2');
@@ -137,6 +155,8 @@ function eliminarSoftware(index) {
         }
 
         mostrarPreguntasFrecuentes();
+        window.onload = preguntarNombreApellido;
+
     </script>
 </body>
 </html>
