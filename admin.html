@@ -1,0 +1,34 @@
+
+<html>
+<head>
+    <title>Consultas Frecuentes</title>
+    <style>
+        .respuesta {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Software Market-Admin</h1>
+    
+    <button id="agregar-software">Agregar Producto</button>
+    
+    <ul id="lista-software"></ul>
+
+    <div id="detalle-software" style="display: none;">
+        <h2>Detalles del Software</h2>
+        <p>Nombre: <span id="nombre-software"></span></p>
+        <p>Versión: <span id="version-software"></span></p>
+        <p>Descripción: <span id="descripcion-software"></span></p>
+        <button id="eliminar-software">Eliminar Software</button>
+    </div>
+    <div class="faq-container">
+        <h2>Preguntas Frecuentes</h2>
+        <ul id="faq-list"></ul>
+    </div>
+    
+    <a href="index.html" class="boton-redirigir">Ir al Catálogo</a>
+
+    <script src="./Js/admin.js"></script>
+</body>
+</html>
