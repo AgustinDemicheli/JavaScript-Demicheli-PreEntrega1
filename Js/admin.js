@@ -1,3 +1,17 @@
+document.addEventListener('DOMContentLoaded', () => {
+    fetchData()
+})
+const fetchData = async () =>{
+    try {
+        const res = await fetch('api.json')
+        const data = await res.json()
+    } catch(error){
+        console.log(error)
+    }
+}
+
+document.querySelector('.admin-h1').textContent = 'Software Market - ADMIN'
+
 const softwareList = [];
 const listaSoftware = document.getElementById('lista-software');
 const detalleSoftware = document.getElementById('detalle-software');

@@ -1,82 +1,80 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Catálogo de Tienda</title>
-    <style>
-        .producto {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin: 10px;
-        }
-        /* Estilos para el modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 1;
-            overflow: auto;
-        }
-        .modal-content {
-            background-color: #fff;
-            margin: 10% auto;
-            padding: 20px;
-            width: 60%;
-            text-align: center;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        }
-    </style>
-</head>
-<body>
-    <h1>Catálogo de Tienda</h1>
-
-    <div id="catalogo">
-        <div class="producto">
-            <h3>Producto 1</h3>
-            <p>Precio: $10</p>
-            <button onclick="verDetalle('Producto 1', 10, 'Descripción del Producto 1')">Ver más</button>
-        </div>
-        <div class="producto">
-            <h3>Producto 2</h3>
-            <p>Precio: $20</p>
-            <button onclick="verDetalle('Producto 2', 20, 'Descripción del Producto 2')">Ver más</button>
-        </div>
-        <div class="producto">
-            <h3>Producto 3</h3>
-            <p>Precio: $15</p>
-            <button onclick="verDetalle('Producto 3', 15, 'Descripción del Producto 3')">Ver más</button>
-        </div>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carrito de compras</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h4>Carrito de compras</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Item</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Acción</th>
+            <th scope="col">Total</th>
+          </tr>
+        </thead>
+        <tbody id="items"></tbody>
+        <tfoot>
+          <tr id="footer">
+            <th scope="row" colspan="5">Carrito vacío - comience a comprar!</th>
+          </tr>
+        </tfoot>
+      </table>
+      <h4>Software market</h4>
+      <div class="row" id="cards"></div>
     </div>
 
-    <h2>Carrito de Compras</h2>
-    <button onclick="mostrarCarrito()">Ver Carrito</button>
+    <template id="template-footer">
+        <th scope="row" colspan="2">Total productos</th>
+        <td>10</td>
+        <td>
+            <button class="btn btn-danger btn-sm" id="vaciar-carrito">
+                vaciar todo
+            </button>
+        </td>
+        <td class="font-weight-bold">$ <span>5000</span></td>
+    </template>
+    
+    <template id="template-carrito">
+      <tr>
+        <th scope="row">id</th>
+        <td>Café</td>
+        <td>1</td>
+        <td>
+            <button class="btn btn-info btn-sm">
+                +
+            </button>
+            <button class="btn btn-danger btn-sm">
+                -
+            </button>
+        </td>
+        <td>$ <span>500</span></td>
+      </tr>
+    </template>
 
-    <div id="carrito-modal" class="modal">
-        <div class="modal-content">
-            <h2>Carrito de Compras</h2>
-            <ul id="carrito"></ul>
-            <p>Total: $<span id="total-precio"></span></p>
-            <button onclick="cerrarCarrito()">Cerrar</button>
-            <button onclick="realizarPago()">Pagar</button>
+    <template id="template-card">
+      <div class="col-12 mb-2">
+        <div class="card">
+          <div class="card-body">
+            <h5>Titulo</h5>
+            <p>precio</p>
+            <button class="btn btn-dark">Comprar</button>
+          </div>
         </div>
-    </div>
+      </div>
+    </template>
 
-    <div id="detalle-modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="cerrarDetalle()">&times;</span>
-            <h2>Detalles del Producto</h2>
-            <p><strong>Nombre: </strong><span id="detalle-nombre"></span></p>
-            <p><strong>Precio: $</strong><span id="detalle-precio"></span></p>
-            <p><strong>Descripción:</strong></p>
-            <p id="detalle-descripcion"></p>
-            <button id="agregar-al-carrito">Agregar al Carrito</button>
-        </div>
-    </div>
-
-    <script src="./Js/catalogo.js">
-    </script>
-</body>
+    <script src="./Js/app.js"></script>
+  </body>
 </html>
